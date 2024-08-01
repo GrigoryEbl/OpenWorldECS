@@ -24,6 +24,9 @@ namespace ECS
             _systems.Add(new PlayerMoveSystem());
             _systems.Add(new FollowSystem());
             _systems.Add(new AnimatedCharacterSystem());
+            _systems.Add(new FindTargetSystem());
+            _systems.Add(new AttackSystem());
+            _systems.Add(new HealthSystem());
 
             _systems.Init();
         }

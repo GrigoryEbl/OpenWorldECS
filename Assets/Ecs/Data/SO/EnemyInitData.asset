@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13d382180934a146a1b2a7635bf40f8, type: 3}
   m_Name: EnemyInitData
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Enemy
+  <FindedName>k__BackingField: PLayer
   <UnitPrefab>k__BackingField: {fileID: -8265388889918571842, guid: b7d84bfc8181f9a47a836b16854f3406,
     type: 3}
   <DefaultSpeed>k__BackingField: 1.5
+  <DefaultHealth>k__BackingField: 10
+  <ScanRadius>k__BackingField: 10

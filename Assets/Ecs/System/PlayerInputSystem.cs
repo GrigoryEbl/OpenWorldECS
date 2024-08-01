@@ -18,7 +18,7 @@ namespace ECS.System
             foreach(var entity in _inputEventFilter)
             {
                 ref var inputEnvent = ref _inputEventFilter.Get1(entity);
-                inputEnvent.Direction = new Vector3(horizontal, 0, vertical);
+                inputEnvent.Direction = new Vector3(horizontal, 0, vertical).normalized;
             }
         }
     }

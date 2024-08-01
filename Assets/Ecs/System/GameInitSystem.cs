@@ -21,6 +21,13 @@ namespace ECS.System
 
         public void Init()
         {
+            CreatePlayer();
+
+            CreateEnemy();
+        }
+
+        private void CreatePlayer()
+        {
             var unitActor = Object.Instantiate(_playerInitData.UnitPrefab, _spawnPoint.position, Quaternion.identity);
 
             var player = _world.NewEntity();
@@ -34,15 +41,16 @@ namespace ECS.System
             ref var animationsComponent = ref player.Get<AnimatedCharacterComponent>();
             animationsComponent.Animator = unitActor.Animator;
 
-            var enemySpawnPosition = _spawnPoint.position + Vector3.one * Random.Range(-2f, 2f);
-            enemySpawnPosition.y = 0;
-
-            CreateEnemy(enemySpawnPosition, unitActor.transform);
+            ref var healthComponent = ref player.Get<HealthComponent>();
+            healthComponent.Health = _playerInitData.DefaultHealth;
         }
 
-        private void CreateEnemy(Vector3 atPosition, Transform target)
+        private void CreateEnemy( )
         {
-            var unitActor = Object.Instantiate(_enemyInitData.UnitPrefab, atPosition, Quaternion.identity);
+            var enemySpawnPosition = _spawnPoint.position + Vector3.one * Random.Range(-15f, 15f);
+            enemySpawnPosition.y = 0;
+
+            var unitActor = Object.Instantiate(_enemyInitData.UnitPrefab, enemySpawnPosition, Quaternion.identity);
 
             var enemy = _world.NewEntity();
 
@@ -53,8 +61,15 @@ namespace ECS.System
             ref var enemyAnimationsComponent = ref enemy.Get<AnimatedCharacterComponent>();
             enemyAnimationsComponent.Animator = unitActor.Animator;
 
+            ref var findTargetComponent = ref enemy.Get<FindTargetComponent>();
+            findTargetComponent.ScanRadius = _enemyInitData.ScanRadius;
+
             ref var followComponent = ref enemy.Get<FollowComponent>();
-            followComponent.Target = target;
-        }
+
+            ref var attackComponent = ref enemy.Get<AttackComponent>();
+            attackComponent.Damage = _enemyInitData.Damage;
+            attackComponent.AttackDistance = _enemyInitData.AttackDistance;
+            attackComponent.AttackDelay = _enemyInitData.AttackDelay;
+        } 
     }
 }

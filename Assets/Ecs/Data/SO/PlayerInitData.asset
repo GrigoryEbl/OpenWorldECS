@@ -15,3 +15,8 @@ MonoBehaviour:
   <UnitPrefab>k__BackingField: {fileID: -223281779609595983, guid: 2d6a14b58a0336b408e36cfbead65e1e,
     type: 3}
   <DefaultSpeed>k__BackingField: 3
+  <DefaultHealth>k__BackingField: 10
+  <ScanRadius>k__BackingField: 10
+  <Damage>k__BackingField: 2
+  <AttackDistance>k__BackingField: 2
+  <AttackDelay>k__BackingField: 1
